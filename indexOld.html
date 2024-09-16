@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-ID Agent Example</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+			background-color: #E5E6E1;
+        }
+
+        /* Styling the Start button to be at the top and centered */
+        #start-btn {
+            position: absolute;
+            top: 20px;
+            font-size: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        /* Hide video and chat input until the start button is clicked */
+        #agent-video, #chat-input, #send-btn {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interact with D-ID Agent</h1>
+
+    <!-- Start button to trigger the agent -->
+    <button id="start-btn">Start</button>
+
+    <!-- Video element to display the agent -->
+    <video id="agent-video" autoplay playsinline></video>
+
+    <!-- Input field to send a chat message to the agent -->
+    <input type="text" id="chat-input" placeholder="Type a message" />
+    <button id="send-btn">Send</button>
+
+    <script type="module">
+        import * as sdk from "@d-id/client-sdk";
+
+        async function initializeAgent() {
+            // Use your own data-agent-id and clientKey
+            let agentId = "agt_6Z_uk-Kp";
+            let auth = { type: 'key', clientKey: "Z29vZ2xlLW9hdXRoMnwxMDAyNDQyNDYzMjAzNjg3MTcxNDk6SXlqMTJFYjNCZF84RVB0Rndmb1cx" };
+
+            // Define the callback functions
+            const callbacks = {
+                // Mandatory: Links the Streamed video/audio to the HTML element
+                onSrcObjectReady(value) {
+                    const videoElement = document.getElementById("agent-video");
+                    videoElement.srcObject = value;
+                    console.log("Agent video loaded and ready.");
+                },
+                // Logs video state changes
+                onVideoStateChange(state) {
+                    console.log("Video state changed: ", state);
+                },
+                // Logs connection state changes
+                onConnectionStateChange(state) {
+                    console.log("Connection state: ", state);
+                },
+                // Logs the new messages in the chat
+                onNewMessage(messages, type) {
+                    console.log("New messages: ", messages, "Type: ", type);
+                },
+                // Error handling
+                onError(error, errorData) {
+                    console.error("Error: ", error, "Error Data: ", errorData);
+                }
+            };
+
+            // Optional: Stream options (you can modify as needed)
+            let streamOptions = { compatibilityMode: "auto", streamWarmup: true };
+
+            // Create the agentManager instance
+            let agentManager = await sdk.createAgentManager(agentId, { auth, callbacks, streamOptions });
+
+            // Connect to the agent (video will be loaded here immediately)
+            await agentManager.connect();
+
+            // Make the agent greet when the page first loads
+            await agentManager.speak({ type: "text", input: "Hello! Nice to meet you, I am here to assess you as a job candidate, please tell me your name and your skills" });
+
+            // Send a message to the agent when the user clicks the 'Send' button
+            document.getElementById("send-btn").addEventListener("click", async () => {
+                const inputText = document.getElementById("chat-input").value;
+                if (inputText.trim()) {
+                    await agentManager.chat(inputText);
+                }
+            });
+        }
+
+        // Event listener for the Start button
+        document.getElementById("start-btn").addEventListener("click", async () => {
+            // Hide the Start button after it is clicked
+            document.getElementById("start-btn").style.display = 'none';
+
+            // Show the video and input elements after Start button is clicked
+            document.getElementById("agent-video").style.display = 'block';
+            document.getElementById("chat-input").style.display = 'block';
+            document.getElementById("send-btn").style.display = 'block';
+
+            // Initialize the agent
+            await initializeAgent();
+        });
+    </script>
+</body>
+</html>

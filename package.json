@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@d-id/client-sdk": "^1.0.19-beta.125",
+    "@deepgram/sdk": "^3.6.0",
+    "@ffmpeg/ffmpeg": "^0.12.10",
+    "vite": "^5.4.3"
+  },
+  "name": "y",
+  "version": "1.0.0",
+  "description": "agenty",
+  "main": "y",
+  "scripts": {
+    "test": "y",
+    "dev": "vite --port 3000"
+  },
+  "author": "",
+  "license": "ISC"
+}
