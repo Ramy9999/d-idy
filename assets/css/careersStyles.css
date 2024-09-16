@@ -1,0 +1,243 @@
+/* Job cards container */
+.job-cards-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Job card styling */
+.job-card {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    height: 200px; /* Set a fixed height for the card */
+    overflow: hidden;
+}
+
+.job-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	border: 1.5px solid #1a73e8;
+}
+
+/* Job info styling */
+.job-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: center;
+}
+
+.job-title {
+    color: #1a73e8;
+    font-size: 1.25rem;
+    margin: 0 0 10px;
+}
+
+.job-location,
+.job-type {
+    color: #333;
+    font-size: 0.875rem;
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+.job-location i,
+.job-type i {
+    margin-right: 5px;
+}
+
+.job-posted-date {
+    color: #666;
+    font-size: 1rem;
+    margin: 10px 0 0;
+    font-weight: 400;
+}
+
+.info-icon {
+    margin-left: 5px;
+    color: #666;
+    cursor: pointer;
+}
+
+/* Job description styling */
+.job-description {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: space-between;
+    z-index: 10;
+    overflow-y: auto;
+}
+
+.job-description-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 0.875rem;
+	font-weight: bold;
+}
+
+.job-description-footer i {
+    cursor: pointer;
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    position: relative;
+    overflow-y: auto;
+    max-height: 90%;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.job-details-container {
+    padding: 20px;
+    color: black;
+}
+
+.job-summary {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.job-details-title {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+	color: #1a73e8;
+}
+
+.summary-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.summary-item {
+    flex: 1;
+    min-width: 250px;
+    margin-right: 20px;
+}
+
+.summary-item h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.summary-item p {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.job-details {
+    font-size: 1em;
+}
+
+.job-details h2 {
+    font-size: 1.5em;
+    margin: 20px 0 10px;
+}
+
+.job-details ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.job-details ul li {
+    margin: 10px 0;
+}
+
+.job-details p {
+    margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .job-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .job-cards-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Apply button */
+.apply-btn {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    border: none; /* Remove borders */
+    padding: 10px 20px; /* Some padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the container inline-block */
+    font-size: 16px; /* Increase font size */
+    margin: 4px 2px; /* Some margin */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.apply-btn:hover {
+    background-color: #0056b3; /* Darker blue */
+}
+
