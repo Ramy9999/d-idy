@@ -10,8 +10,8 @@
   "description": "agenty",
   "main": "y",
   "scripts": {
-    "test": "y",
-    "dev": "vite"
+    "dev": "vite --host",
+    "prod": "vite build"
   },
   "author": "",
   "license": "ISC"
