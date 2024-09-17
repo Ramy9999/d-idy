@@ -11,7 +11,7 @@
   "main": "y",
   "scripts": {
     "test": "y",
-    "dev": "vite --port 3000"
+    "dev": "vite"
   },
   "author": "",
   "license": "ISC"
